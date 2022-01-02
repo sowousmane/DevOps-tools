@@ -1,14 +1,13 @@
 version: "3.9"
 services:
   mysql:
-    image: mysql:5.7.36
+    image: mysql:${MYSQL_VERSION}
     hostname: db-mysql
     container_name: db-mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root-secret
-      - MYSQL_USER=ousmane
-      - MYSQL_PASSWORD=ousmane-secret
-      - MYSQL_DATABASE=restaurant
+    #replace environment section
+    env_file:
+      - mysql.env
+
     ports:
       - 3306:3306
     networks:
@@ -22,7 +21,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      - VIRTUAL_HOST=mysql.soowcode.local
+      - VIRTUAL_HOST=${VIRTUAL_HOST_NAME}
       - VIRTUAL_PORT=8080
     networks:
       - proxy_my-network
