@@ -1,0 +1,50 @@
+version: "3.1"
+
+services:
+  ghost:
+    image: ghost:4.32.0
+    restart: always
+    depends_on:
+      - mysql-service
+    #ports:
+    #- 8080:2368
+    environment:
+      # see https://ghost.org/docs/config/#configuration-options
+      database__client: mysql
+      database__connection__host: mysql-service
+      database__connection__user: root
+      database__connection__password: database-root-passwrd
+      database__connection__database: ghost
+      # this url value is just an example, and is likely wrong for your environment!
+      url: http://${VIRTUAL_HOST_NAME}
+      #mail__transport: SMTP
+      #mail__options__service: Gmail
+      #mail__options__auth__user: "e-mail"
+      #mail__options__auth__pass: "password"
+      # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
+      NODE_ENV: production
+      VIRTUAL_HOST: ${VIRTUAL_HOST_NAME}
+      VIRTUAL_PORT: 2368
+    networks:
+      - default
+      - proxy_my-network
+    volumes:
+      - ghost-data:/var/lib/ghost/content 
+
+  mysql-service:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: database-root-passwrd
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - default
+
+networks:
+  proxy_my-network:
+    external: true
+
+volumes:
+  ghost-data:
+  mysql-data:
