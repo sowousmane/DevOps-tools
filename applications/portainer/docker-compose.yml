@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:2.9.3
+    restart: always
+    #ports:
+    # - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - port_data:/data
+    networks:
+      - default
+      - proxy_my-network
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST_NAME}
+      - VIRTUAL_PORT=9000
+
+networks:
+  proxy_my-network:
+    external: true
+
+volumes:
+  port_data:

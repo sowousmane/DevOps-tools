@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  server:
+    image: gitea/gitea:1.15.9
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - VIRTUAL_HOST=${VIRTUAL_HOST_NAME}
+      - VIRTUAL_PORT=3000
+    restart: always
+    networks:
+      - default
+      - proxy_my-network
+    volumes:
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    #ports:
+    # - "3000:3000"
+    # - "222:22"
+
+networks:
+  proxy_my-network:
+    external: true
