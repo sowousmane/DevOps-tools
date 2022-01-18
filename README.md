@@ -1,7 +1,7 @@
 # <h1 style="text-align:center">Bienvenue dans ce repo de DevOps</h1>
 
 <div style="text-align:center">
-<img src="img/cloud-service.gif" alt="drawing" style="width:400px; height:400px"/>
+<img src="img/cloud-service.gif" alt="drawing" style="width:200px; height:200px"/>
 
 </div>
 
