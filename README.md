@@ -6,7 +6,7 @@ Nous avons mis en place un ensemble d'outils permettant la gestion d'une entrepr
 - Database
 - Monitoring
 - Proxy
-  > `Rappelons que toutes les technos que nous utiliserons ici seront créés à par un "docker compose" car notre objectif et d'apprend et utilise docker`
+  > `Rappelons que toutes les technos que nous utiliserons ici seront créés à par un "docker-compose" car notre objectif et d'apprendre et d'utiliser docker`
 
 ## Applications
 
@@ -30,10 +30,10 @@ Dans ce dossier nous avons tou(e)s les serveurs et bases de données.
 ## Monitoring
 Dans ce dossier nous avons tout ce qu'il nous faut pour monitorer nos applications.
 Pour le moment il contient prometheus, grafana, node-exporter, cadvisor.
-### prometheus
-### grafana
-### node-exporter
-### cadvisor
+- prometheus
+- grafana
+- node-exporter
+- cadvisor
 
 ## Proxy
 Dans le proxy nous avons mis: jwilder et nginx-proxy
