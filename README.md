@@ -1,5 +1,6 @@
 # <h1 style="text-align:center">Bienvenue dans ce repo de DevOps</h1>
 
+<img src="img/cloud-service.png" alt="drawing" style="width:30px; height:30px"/>
 Nous avons mis en place un ensemble d'outils permettant la gestion d'une entreprise.Nous les listerons et vous indiquerons le nom de chaque dossier ou fichier contenant l'information dont on vous parlera.Nous avons 4 dossiers dans ce repo, un dossier:
 
 - Applications
