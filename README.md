@@ -1,10 +1,6 @@
 # Bienvenue dans ce repo de DevOps
 
-<div style="text-align:center">
 <img src="img/cloud-service.gif" alt="drawing" style="width:200px; height:200px"/>
-
-</div>
-
 
 Nous avons mis en place un ensemble d'outils permettant la gestion d'une entreprise.Nous les listerons et vous indiquerons le nom de chaque dossier ou fichier contenant l'information dont on vous parlera.Nous avons 4 dossiers dans ce repo, un dossier:
 
