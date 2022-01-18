@@ -1,11 +1,18 @@
 # <h1 style="text-align:center">Bienvenue dans ce repo de DevOps</h1>
 
+<div style="text-align:center">
+<img src="img/cloud-service.gif" alt="drawing" style="width:400px; height:400px"/>
+
+</div>
+
+
 Nous avons mis en place un ensemble d'outils permettant la gestion d'une entreprise.Nous les listerons et vous indiquerons le nom de chaque dossier ou fichier contenant l'information dont on vous parlera.Nous avons 4 dossiers dans ce repo, un dossier:
 
 - Applications
 - Database
 - Monitoring
 - Proxy
+
   > `Rappelons que toutes les technos que nous utiliserons ici seront créés à par un "docker-compose" car notre objectif et d'apprendre et d'utiliser docker`
 
 ## Applications
@@ -28,14 +35,17 @@ Dans ce dossier nous avons tou(e)s les serveurs et bases de données.
 - SQLSERVER: tutorial en cours mais je vous mets le lien vers 👉 <a style="text-decoration: underline; color:black" href="https://hub.docker.com/_/microsoft-mssql-server"> docker hub </a> ou le site de 👉 <a style="text-decoration: underline; color:black" href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash"> microsoft</a>
 
 ## Monitoring
+
 Dans ce dossier nous avons tout ce qu'il nous faut pour monitorer nos applications.
 Pour le moment il contient prometheus, grafana, node-exporter, cadvisor.
+
 - prometheus
 - grafana
 - node-exporter
 - cadvisor
 
 ## Proxy
+
 Dans le proxy nous avons mis: jwilder et nginx-proxy
 
 .... to continue later....
