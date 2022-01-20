@@ -17,3 +17,13 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["node-exporter:9100"]
+ 
+  - job_name: "gitea"
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["gitea:3000"]
+
+  - job_name: "fast-api"
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["host.docker.internal:8000"]

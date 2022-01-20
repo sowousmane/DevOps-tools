@@ -1,1 +1,3 @@
 applications/gitea/gitea
+applications/api/venv
+applications/api/__pycache__

@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   grafana:
-    image: grafana/grafana:6.7.2
+    image: grafana/grafana:8.3.4
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana      
@@ -9,9 +9,11 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=adminpassword
       - GF_USERS_ALLOW_SIGN_UP=false
+      - VIRTUAL_HOST=grafana.soowcode.local
+      - VIRTUAL_PORT=3000
     restart: unless-stopped
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
     networks:
       - proxy_my-network
       - default
@@ -26,14 +28,20 @@ services:
       - "--storage.tsdb.path=/prometheus"
       - "--web.console.libraries=/usr/share/prometheus/console_libraries"
       - "--web.console.templates=/usr/share/prometheus/consoles"
-    ports:
-      - 9091:9090
+    # ports:
+    #   - 9091:9090
+    environment:
+      - VIRTUAL_HOST=prometheus.soowcode.local
+      - VIRTUAL_PORT=9090
     depends_on:
       - cadvisor
     networks:
       - proxy_my-network
       - default
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      
 
   node-exporter:
     image: prom/node-exporter
