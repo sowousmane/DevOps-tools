@@ -100,6 +100,18 @@ services:
 
     restart: always
 
+  uptime-kuma:
+    image: "louislam/uptime-kuma:1.11.3-alpine"
+    restart: always
+    volumes:
+      - ./uptime-kuma:/app/data
+    ports:
+      - 3001:3001
+    
+    networks:
+      - proxy_my-network
+      - default
+
 networks:
   proxy_my-network:
     external: true
