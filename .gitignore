@@ -1,3 +1,7 @@
 applications/gitea/gitea
 applications/api/venv
 applications/api/__pycache__
+applications/flask-python/venv
+applications/flask-python/__pycache__
+applications/flask-python/.env
+monitoring/alertmanager/config.yml

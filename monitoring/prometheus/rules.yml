@@ -1,0 +1,29 @@
+groups:
+  - name: custom_rules
+    rules:
+      - record: node_memory_MemFree_percent
+        expr: 100 - (100 * node_memory_MemFree_bytes / node_memory_MemTotal_bytes)
+
+      - record: node_filesystem_free_percent
+        expr: 100 * node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}
+
+  - name: alert_rules
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance [{{ $labels.instance }}] down"
+          description: "[{{ $labels.instance }}] of job [{{ $labels.job }}] has been down for more than 1 minute."
+
+      - alert: webSiteDown
+        expr: probe_http_status_code{} != 200
+        for: 2m
+        labels:
+          severity: critical
+          app: "{{$labels.server}}"
+        annotations:
+          summary: "The website {{ $labels.instance }} is down"
+          description: "the website {{ $labels.instance }} of server {{ $labels.server }} has been down for a while."

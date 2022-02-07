@@ -1,0 +1,25 @@
+version: "3"
+services:
+  flask:
+    build: .
+    image: flask:dev
+    command: flask run
+    # ports:
+    #   - 5000:5000
+    volumes:
+      - .:/app # important for changes that you'll do in your applications so it will be loaded automatically
+    environment:
+      VIRTUAL_HOST: flask.soowcode.local
+      VIRTUAL_PORT: 5000
+    networks:
+      - default
+      - proxy_my-network
+    
+    
+
+networks:
+  proxy_my-network:
+    external: true
+volumes:
+  app:
+    
