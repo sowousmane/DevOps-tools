@@ -8,13 +8,28 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - my-network
+    logging:
+      driver: journald
+      options:
+        tag: "test-nginx-app-1"
 
   web:
     image: jwilder/whoami
     environment:
       - VIRTUAL_HOST=test.soowcode.local
+    hostname: "ousmane"
     networks:
       - my-network
+    # cap_add:
+    #   - ALL
+    # cap_drop:
+    #   - NET_ADMIN
+    #   - SYS_ADMIN
+    deploy:
+      resources:
+        limits:
+          memory: 7m
+          cpus: '0.1'
 networks:
   my-network:
     external: false

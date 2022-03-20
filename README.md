@@ -2,46 +2,58 @@
 
 <img src="img/cloud-service.gif" alt="drawing" style="width:200px; height:200px"/>
 
-Nous avons mis en place un ensemble d'outils permettant la gestion d'une entreprise.Nous les listerons et vous indiquerons le nom de chaque dossier ou fichier contenant l'information dont on vous parlera.Nous avons 4 dossiers dans ce repo, un dossier:
+Ce projet consiste à mettre en place un système de gestion d'une entreprise.  
+Pour cela un ensemble d'outils a été mis en place, ainsi, ces outils se trouvant dans des dossiers "folders" seront listés ci-dessous.
 
 - Applications
 - Database
 - Monitoring
 - Proxy
 
-  > `Rappelons que toutes les technos que nous utiliserons ici seront créés à par un "docker-compose" car notre objectif et d'apprendre et d'utiliser docker`
+  > `Rappelons que toutes les technos ou presque toutes utilisées ici seront créés à partir d'un "docker-compose" car l'objectif est d'apprendre et d'utiliser docker. Donc  tout conteneurisé.`
 
 ## Applications
 
-Il contient les dossiers qui contiennent nos applications, dedans vous trouverez:
+Il contient les dossiers qui contiennent les applications, dedans vous trouverez:
 
-- Ghost: <img src="img/ghost.png" alt="drawing" style="width:30px; height:30px"/>Une plateforme de blogs gratuite et open source écrite en JavaScript <a style="text-decoration: underline; color:black"  href="https://hub.docker.com/_/ghost"> liens vers docker-hub</a>
+- Ghost: <img src="img/ghost.png" alt="drawing" style="width:30px; height:30px"/>Une plateforme de blogs gratuite et open source écrite en JavaScript <a style="text-decoration: underline; color:black"  href="https://hub.docker.com/_/ghost"> lien vers docker-hub</a>
 
-- Gitea: <img src="img/tea.png" alt="drawing" style="width:30px; height:30px"/>Un service git en local que vous hebergez et manipulez comme une tasse de thé, <a style="text-decoration: underline; color:black"  href="https://docs.gitea.io/en-us/install-with-docker/"> documentation</a>
+- Gitea: <img src="img/tea.png" alt="drawing" style="width:30px; height:30px"/>Un service git en local que vous hebergez et manipulez comme une tasse de thé <a style="text-decoration: underline; color:black"  href="https://docs.gitea.io/en-us/install-with-docker/"> documentation</a>
 
-- Portainer: Un container qui monitor des conteneurs je vous mets le liens vers la doc 👉 <a style="text-decoration: underline; color:black" href="https://docs.portainer.io/v/ce-2.11/start/install/agent/docker/linux#deployment"> ici</a>
+- Portainer: Un container qui monitor des conteneurs, lien vers la doc 👉 <a style="text-decoration: underline; color:black" href="https://docs.portainer.io/v/ce-2.11/start/install/agent/docker/linux#deployment"> ici</a>
+
+- FastAPI: Une application crée à partir du Framework fast-api de  python, lien vers la doc 👉 <a style="text-decoration: underline; color:black" href="https://medium.com/swlh/fastapi-microservice-patterns-application-monitoring-49fcb7341d9a"> ici</a>
+
+- FLASK: Une application crée à partir du Framework flask-python, lien vers la doc 👉 <a style="text-decoration: underline; color:black" href="https://towardsdatascience.com/how-to-dockerize-an-existing-flask-application-115408463e1c"> ici</a>
 
 ## Database
 
-Dans ce dossier nous avons tou(e)s les serveurs et bases de données.
+Dans ce dossier il y a tous les serveurs et toutes les bases de données.
 
-- MySQL: J'ai écris un article sur lui voici 👉 <a style="text-decoration: underline; color:black" href="https://soowcode.github.io/docker-mysql/"> le lien</a>
-- Postgresql: À noté que dans 👉 <a style="text-decoration: underline; color:black" href="https://hub.docker.com/_/postgres"> docker hub </a> ils utilise adminer, mais moi j'utilise pgadmin4
+- MySQL: Je vous mets l'article que j'ai écris un article sur MySQL-docker-compose voici 👉 <a style="text-decoration: underline; color:black" href="https://soowcode.github.io/docker-mysql/"> le lien</a>
+- PostgreSQL: À noté que dans 👉 <a style="text-decoration: underline; color:black" href="https://hub.docker.com/_/postgres"> docker hub </a> ils utilisent adminer, mais dans ce projet est utilisé pgAdmin 4.
 
-- SQLSERVER: tutorial en cours mais je vous mets le lien vers 👉 <a style="text-decoration: underline; color:black" href="https://hub.docker.com/_/microsoft-mssql-server"> docker hub </a> ou le site de 👉 <a style="text-decoration: underline; color:black" href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash"> microsoft</a>
+- SQLSERVER: Un server SqlServer, pour plus d'informations 👉 <a style="text-decoration: underline; color:black" href="https://hub.docker.com/_/microsoft-mssql-server"> docker hub </a> ou le site de 👉 <a style="text-decoration: underline; color:black" href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash"> microsoft</a>
 
 ## Monitoring
 
-Dans ce dossier nous avons tout ce qu'il nous faut pour monitorer nos applications.
-Pour le moment il contient prometheus, grafana, node-exporter, cadvisor.
+Dans ce dossier il y a  tout ce qu'il  faut pour monitorer les applications citées ci-dessus.
+Pour le moment il contient prometheus, grafana, node-exporter, cadvisor, alertmanager, uptime-kuma,...
 
 - prometheus
 - grafana
 - node-exporter
 - cadvisor
+- alertmanager
+- uptime-kuma
+- blackbox
 
 ## Proxy
 
-Dans le proxy nous avons mis: jwilder et nginx-proxy
+Dans le dossier proxy il y a jwilder et le nginx-proxy.
 
-.... to continue later....
+- jwilder: Il permet d'afficher le nom de l'ordinateur qui fait tourner le conteneur si le hostname est precisé il l'utilise sinon c'est le conteneur-id qu'il met.
+- nginx-proxy: est le proxy utilisé afin d'éviter d'acceder directement aux applications.
+<img src="img/diagram.png" alt="drawing" />
+
+

@@ -5,3 +5,4 @@ applications/flask-python/venv
 applications/flask-python/__pycache__
 applications/flask-python/.env
 monitoring/alertmanager/config.yml
+test/
