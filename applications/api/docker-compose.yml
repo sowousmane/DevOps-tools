@@ -1,0 +1,18 @@
+version: "3"
+services:
+  fast-api:
+    build: .
+    image: fast-api:dev
+    environment:
+      VIRTUAL_HOST: fastapi.soowcode.local
+      VIRTUAL_PORT: 8081
+    networks:
+      - default
+      - proxy_my-network
+    
+    
+
+networks:
+  proxy_my-network:
+    external: true
+    

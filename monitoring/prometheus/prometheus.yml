@@ -37,10 +37,6 @@ scrape_configs:
     static_configs:
       - targets: ["host.docker.internal:8000"]
 
-  - job_name: "flask-api-SpaceSense"
-    scrape_interval: 10s
-    static_configs:
-      - targets: ["192.168.252.34:5000"]
       
   - job_name: "blackbox"
     metrics_path: /probe
@@ -48,21 +44,25 @@ scrape_configs:
       module: [http_2xx] # Look for a HTTP 200 response.
     static_configs:
       - targets:
-          - https://spacesense-test.ey.r.appspot.com/
+          - https://google.com/
         labels:
-          server: "SpaceSense-api-test"
+          server: "Google "
       - targets:
-          - https://spacesense-api.ew.r.appspot.com/
+          - https://facebook.com/
         labels:
-          server: "SpaceSense-api-prod"
+          server: "facebook"
       - targets:
-          - https://www.spacesense.ai/
+          - https://yahoo.com/
         labels:
-          server: "SpaceSense-web-site"
+          server: "Yahoo"
       - targets:
-          - https://testtest.spacesense.ai/
+          - "http://fast-api:8081"
         labels:
-          server: "SpaceSense-test-error"
+          server: "fast-api"
+      - targets:
+          - "http://flask:5000"
+        labels:
+          server: "flask"
       - targets:
           - https://testtest.savoirguinee.com
         labels:

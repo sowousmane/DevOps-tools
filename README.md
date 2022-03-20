@@ -5,12 +5,18 @@
 Ce projet consiste à mettre en place un système de gestion d'une entreprise.  
 Pour cela un ensemble d'outils a été mis en place, ainsi, ces outils se trouvant dans des dossiers "folders" seront listés ci-dessous.
 
+- Proxy
 - Applications
 - Database
 - Monitoring
-- Proxy
 
-  > `Rappelons que toutes les technos ou presque toutes utilisées ici seront créés à partir d'un "docker-compose" car l'objectif est d'apprendre et d'utiliser docker. Donc  tout conteneurisé.`
+  > `Rappelons que toutes les technos utilisées ici seront créés à partir d'un "docker-compose" car l'objectif est d'apprendre et d'utiliser docker. Donc  tout conteneurisé.`
+
+## Proxy
+
+Dans le dossier proxy il y a le nginx-proxy.
+
+- nginx-proxy: est le proxy utilisé afin d'éviter d'acceder directement aux applications.
 
 ## Applications
 
@@ -48,12 +54,6 @@ Pour le moment il contient prometheus, grafana, node-exporter, cadvisor, alertma
 - uptime-kuma
 - blackbox
 
-## Proxy
-
-Dans le dossier proxy il y a jwilder et le nginx-proxy.
-
-- jwilder: Il permet d'afficher le nom de l'ordinateur qui fait tourner le conteneur si le hostname est precisé il l'utilise sinon c'est le conteneur-id qu'il met.
-- nginx-proxy: est le proxy utilisé afin d'éviter d'acceder directement aux applications.
 <img src="img/diagram.png" alt="drawing" />
 
 
