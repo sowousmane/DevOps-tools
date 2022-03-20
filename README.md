@@ -1,6 +1,8 @@
 # Bienvenue dans ce repo de DevOps
 
-<img src="img/cloud-service.gif" alt="drawing" style="width:200px; height:200px"/>
+<!-- <img src="img/cloud-service.gif" alt="drawing" style="width:200px; height:200px"/> -->
+
+<img src="img/diagram.png" alt="drawing" />
 
 Ce projet consiste à mettre en place un système de gestion d'une entreprise.  
 Pour cela un ensemble d'outils a été mis en place, ainsi, ces outils se trouvant dans des dossiers "folders" seront listés ci-dessous.
@@ -17,6 +19,7 @@ Pour cela un ensemble d'outils a été mis en place, ainsi, ces outils se trouva
 Dans le dossier proxy il y a le nginx-proxy.
 
 - nginx-proxy: est le proxy utilisé afin d'éviter d'acceder directement aux applications.
+
 
 ## Applications
 
@@ -54,6 +57,6 @@ Pour le moment il contient prometheus, grafana, node-exporter, cadvisor, alertma
 - uptime-kuma
 - blackbox
 
-<img src="img/diagram.png" alt="drawing" />
 
 
+<img src="img/alerting.png" alt="drawing" />

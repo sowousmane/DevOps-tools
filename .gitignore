@@ -9,3 +9,4 @@ applications/api/__pycache__
 applications/api/app/__pycache__
 monitoring/alertmanager/config.yml
 test/
+drawio/
