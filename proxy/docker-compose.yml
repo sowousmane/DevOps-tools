@@ -30,6 +30,11 @@ services:
         limits:
           memory: 7m
           cpus: '0.1'
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "whoami"
 networks:
   my-network:
     external: false

@@ -7,6 +7,8 @@ applications/flask-python/.env
 applications/api/venv
 applications/api/__pycache__
 applications/api/app/__pycache__
+monitoring/alertmanager/config_2.yml
 monitoring/alertmanager/config.yml
 test/
 drawio/
+docker-revision/

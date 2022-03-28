@@ -17,6 +17,12 @@ services:
     networks:
       - proxy_my-network
       - default
+    
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "grafana"
 
   prometheus:
     image: prom/prometheus:v2.1.0
@@ -87,6 +93,12 @@ services:
       - proxy_my-network
       - default
     restart: always
+
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "cadvisor"
 
   prometheus-blackbox:
     image: prom/blackbox-exporter
