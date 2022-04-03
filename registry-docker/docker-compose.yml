@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  registry:
+    image: registry:2.8.1
+    ports:
+      - "5000:5000"
+    volumes:
+      - registry_data:/var/lib/registry
+    # networks:
+    #   - my-network
+    # logging:
+    #   driver: journald
+    #   options:
+    #     tag: "docker-registry"
+    
+  app:
+    image: jc21/registry-ui
+    ports:
+      - 5001:80
+    environment:
+      - REGISTRY_HOST=registry:5000
+      - REGISTRY_SSL=false
+      # - REGISTRY_DOMAIN=your-registry-server.com:5000
+      # - REGISTRY_STORAGE_DELETE_ENABLED=
+    restart: on-failure
+# networks:
+#   my-network:
+#     external: false
+volumes:
+  registry_data:
