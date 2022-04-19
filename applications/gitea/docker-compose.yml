@@ -13,7 +13,7 @@ services:
       - default
       - proxy_my-network
     volumes:
-      - ./gitea:/data
+      - ${PWD}/gitea:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     #ports:

@@ -52,6 +52,14 @@ scrape_configs:
         labels:
           server: "facebook"
       - targets:
+          - "https://mooc.savoirguinee.com/"
+        labels:
+          server: "savoir-guinee"
+      - targets:
+          - "https://docs.soowcode.com/"
+        labels:
+          server: "soowcode-docs"
+      - targets:
           - https://yahoo.com/
         labels:
           server: "Yahoo"
@@ -63,10 +71,6 @@ scrape_configs:
           - "http://flask:5000"
         labels:
           server: "flask"
-      - targets:
-          - https://testtest.savoirguinee.com
-        labels:
-          server: "savoir-guinee"
 
     relabel_configs:
       - source_labels: [__address__]

@@ -17,7 +17,7 @@ services:
     image: jwilder/whoami
     environment:
       - VIRTUAL_HOST=test.soowcode.local
-    hostname: "ousmane"
+    #hostname: "ousmane"
     networks:
       - my-network
     # cap_add:
