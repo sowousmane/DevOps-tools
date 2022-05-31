@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  traefik:
+    image: "traefik:v2.6"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      ######################################
+      - "--certificatesResolvers.lets-encrypt.acme.email=sowousmane4811@gmail.com"
+      - "--certificatesResolvers.lets-encrypt.acme.storage=acme.json"
+      - "--certificatesResolvers.lets-encrypt.acme.tlsChallenge=true"
+      - "--certificatesResolvers.lets-encrypt.acme.httpChallenge=true"
+      - "--certificatesResolvers.lets-encrypt.acme.httpChallenge.entryPoint=web"
+      - "--providers.docker.network=soowcode"
+      - "--serverstransport.insecureskipverify=true"
+    # labels:
+    #   # Dashboard
+    #   - "traefik.http.routers.traefik.rule=Host(`traefik-dashboard.soowcode.com`)"
+    #   - "traefik.http.routers.traefik.service=api@internal"
+    #   - "traefik.http.routers.traefik.tls.certresolver=lets-encrypt"
+    #   - "traefik.http.routers.traefik.entrypoints=websecure"
+    # - "traefik.http.routers.traefik.middlewares=authtraefik"
+    # - "traefik.http.middlewares.authtraefik.basicauth.users=rougeo:$$apr1$$U8fcoH9i$$y02OEkPKZdPsBpLbNzUS41" # user/passwo
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    networks:
+      - soowcode
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - ./traefik/acme.json:/acme.json
+
+networks:
+  soowcode:
+    external: false

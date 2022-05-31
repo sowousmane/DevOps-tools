@@ -1,0 +1,6 @@
+---
+- hosts: all # group targetted
+  roles:
+    - system_install
+    - docker_tasks
+    

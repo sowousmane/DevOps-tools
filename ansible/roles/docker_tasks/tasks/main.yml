@@ -1,0 +1,24 @@
+- name: deploy Docker Compose stack
+  docker_compose:
+    project_src: /home/ousmane/DevOps/DevOps/{{ item }} 
+    files:
+    - docker-compose.yml
+    pull: yes
+
+  with_items:
+    - proxy
+    # - applications/api
+    # - applications/flask-python
+    - applications/ghost
+    - applications/gitea
+    - applications/portainer
+    - database/mysql
+    - database/postgresql
+    - database/sql-server
+    - elk
+    - monitoring
+    - registry-docker
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+      
+  

@@ -1,0 +1,15 @@
+- name: Install python3-pip
+  become: yes
+  apt:
+    name: python3-pip
+    update_cache: yes
+  tags: docker_deps
+
+- name: Install docker packages
+  become: yes
+  pip:
+    name: 
+      - docker-compose
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tags: docker_deps

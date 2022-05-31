@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+
+  mariadb:
+    image: mariadb:10.7.3
+    restart: always
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: root-secret
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.1.3
+    ports:
+      - 8006:80
+    environment:
+      - PMA_ARBITRARY=1
+    depends_on:
+      - mariadb
+
+
+
+volumes:
+  mariadb-data:

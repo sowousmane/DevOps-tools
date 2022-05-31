@@ -1,0 +1,24 @@
+version: "3"
+services:
+  rabbitmq:
+    image: rabbitmq:3.9.18-management-alpine
+    container_name: "rabbitmq"
+    hostname: ousmane
+    environment:
+      VIRTUAL_HOST: ${RABITMQ_HOST_NAME}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+      VIRTUAL_PORT: ${VIRTUAL_PORT}
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - .docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - .docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - default
+      - proxy_my-network
+
+networks:
+  proxy_my-network:
+    external: true
