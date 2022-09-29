@@ -1,0 +1,28 @@
+# Dockerfile
+FROM node:11.13.0-alpine as builder
+
+# create destination directory
+RUN mkdir -p /usr/src/nuxt-app
+WORKDIR /usr/src/nuxt-app
+
+COPY my_nuxt/package*.json ./
+
+RUN npm install
+
+# copy the app, note .dockerignore
+COPY my_nuxt/ ./
+
+RUN npm run build
+
+# EXPOSE 3000
+
+# ENV NUXT_HOST=0.0.0.0
+# ENV NUXT_PORT=3000
+
+# CMD [ "npm", "start" ]
+
+
+# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
+FROM nginx:1.23.1-alpine
+
+COPY --from=builder /usr/src/nuxt-app/dist/ /usr/share/nginx/html
