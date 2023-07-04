@@ -12,7 +12,7 @@ Pour cela un ensemble d'outils a été mis en place, ainsi, ces outils se trouva
 - Database
 - Monitoring
 
-  > `Rappelons que toutes les technos utilisées ici seront créés à partir d'un "docker-compose" car l'objectif est d'apprendre et d'utiliser docker. Donc  tout conteneurisé.`
+  > `Rappelons que toutes les technos utilisées ici seront créés à partir d'un "docker-compose" car l'objectif est d'apprendre et d'utiliser docker, donc de tout conteneurisé.`
 
 ## Proxy
 
