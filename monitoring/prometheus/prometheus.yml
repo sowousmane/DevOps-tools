@@ -1,10 +1,13 @@
 global:
   scrape_interval: 15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 10s # How frequently to evaluate rules
 
-# Here it's Prometheus itself.
+# Here it's Prometheus itself the prometheus/rules.yml file.
 rule_files:
   - rules.yml
 
+
+# Alerting specifies settings related to the Alertmanager
 alerting:
   alertmanagers:
     - scheme: http
@@ -35,7 +38,12 @@ scrape_configs:
   - job_name: "fast-api"
     scrape_interval: 5s
     static_configs:
-      - targets: ["host.docker.internal:8000"]
+      - targets: ["fast-api:8081"]
+  
+  - job_name: "flask"
+    scrape_interval: 1s
+    static_configs:
+      - targets: ["flask:5000"]
 
       
   - job_name: "blackbox"

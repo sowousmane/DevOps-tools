@@ -1,4 +1,4 @@
-from flask import Response, Flask
+from flask import Flask
 #import flask_monitoringdashboard as dashboard
 from prometheus_flask_exporter import PrometheusMetrics
 
