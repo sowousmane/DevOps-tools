@@ -1,31 +1,25 @@
 version: "3.9"
 services:
   grafana:
-    image: grafana/grafana:8.3.4
+    image: grafana/grafana:10.2.2
     container_name: grafana
     volumes:
-      - grafana_data:/var/lib/grafana
+      - ./grafana_data:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=adminpassword
       - GF_USERS_ALLOW_SIGN_UP=false
       - VIRTUAL_HOST=grafana.soowcode.local
       - VIRTUAL_PORT=3000
-    restart: unless-stopped
-    # ports:
-    #   - 3000:3000
+    ports:
+      - 3000:3000
     networks:
       - proxy_my-network
       - default
-    
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "grafana"
 
   prometheus:
-    image: prom/prometheus:v2.1.0
+    image: prom/prometheus:v2.48.0
+    container_name: prom_ct
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
@@ -34,8 +28,8 @@ services:
       - "--storage.tsdb.path=/prometheus"
       - "--web.console.libraries=/usr/share/prometheus/console_libraries"
       - "--web.console.templates=/usr/share/prometheus/consoles"
-    # ports:
-    #   - 9091:9090
+    ports:
+      - 9091:9090
     environment:
       - VIRTUAL_HOST=prometheus.soowcode.local
       - VIRTUAL_PORT=9090
@@ -44,12 +38,11 @@ services:
     networks:
       - proxy_my-network
       - default
-    restart: always
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
   node-exporter:
-    image: prom/node-exporter
+    image: prom/node-exporter:v1.7.0
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -59,15 +52,14 @@ services:
       - "--path.sysfs=/host/sys"
       - --collector.filesystem.ignored-mount-points
       - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
-    # ports:
-    #   - 9100:9100
+    ports:
+      - 9100:9100
     networks:
       - proxy_my-network
       - default
-    restart: always
 
   alertmanager:
-    image: prom/alertmanager
+    image: prom/alertmanager:v0.26.0
     ports:
       - 9093:9093
     volumes:
@@ -77,7 +69,7 @@ services:
       - default
     restart: always
     command:
-      - "--config.file=/etc/alertmanager/config.yml"
+      - "--config.file=/etc/alertmanager/alertmanager.yml"
       - "--storage.path=/alertmanager"
 
   cadvisor:
@@ -92,16 +84,9 @@ services:
     networks:
       - proxy_my-network
       - default
-    restart: always
-
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "cadvisor"
-
+    
   prometheus-blackbox:
-    image: prom/blackbox-exporter
+    image: prom/blackbox-exporter:v0.24.0
     volumes:
       - ./prometheus/config.yml:/etc/blackbox_exporter/config.yml
     ports:
@@ -110,20 +95,18 @@ services:
       - proxy_my-network
       - default
 
-    restart: always
 
-  uptime-kuma:
-    image: "louislam/uptime-kuma:1.11.3-alpine"
-    restart: always
-    volumes:
-      - ./uptime-kuma:/app/data
-    ports:
-      - 3001:3001
+  # uptime-kuma:
+  #   image: "louislam/uptime-kuma:1.11.3-alpine"
+  #   restart: always
+  #   volumes:
+  #     - ./uptime-kuma:/app/data
+  #   ports:
+  #     - 3001:3001
     
-    networks:
-      - proxy_my-network
-      - default
-
+    # networks:
+    #   - proxy_my-network
+    #   - default
 networks:
   proxy_my-network:
     external: true

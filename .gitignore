@@ -9,6 +9,7 @@ applications/api/__pycache__
 applications/api/app/__pycache__
 monitoring/alertmanager/config_2.yml
 monitoring/alertmanager/config.yml
+monitoring/grafana_data/
 test/
 drawio/
 docker-revision/

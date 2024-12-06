@@ -4,8 +4,8 @@ services:
     build: .
     image: flask:dev
     command: flask run
-    # ports:
-    #   - 5000:5000
+    ports:
+      - 5000:5000
     volumes:
       - .:/app # important for changes that you'll do in your applications so it will be loaded automatically
     environment:

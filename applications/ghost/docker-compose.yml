@@ -6,8 +6,8 @@ services:
     restart: always
     depends_on:
       - mysql-service
-    #ports:
-    #- 8080:2368
+    ports:
+    - 8082:2368
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
