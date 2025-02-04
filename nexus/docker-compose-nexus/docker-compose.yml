@@ -1,0 +1,30 @@
+services:
+  nexus:
+    image: sonatype/nexus3:3.68.1
+    environment:
+      VIRTUAL_HOST: ${NEXUS_HOST_NAME}
+      VIRTUAL_PORT: ${NEXUS_HOST_PORT}
+      LETSENCRYPT_HOST: ${NEXUS_HOST_NAME}
+      #LETSENCRYPT_EMAIL: sowousmane4811@gmail.com
+      INSTALL4J_ADD_VM_PARAMS: "-Xms2703m -Xmx2703m -XX:MaxDirectMemorySize=1703m"
+    
+    networks:
+      proxy_network:
+    ports:
+      - "8081:8081" # pour l'acces à l'interface web de nexus
+      - "8082:8082" # pour activer le nexus private repo
+      - "8083:8083" # pour le proxy docker-hub
+    volumes:
+      - nexus-data:/nexus-data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`nexus.soowcode.local`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+
+
+networks:
+  proxy_network:
+    external: true
+
+volumes:
+  nexus-data:

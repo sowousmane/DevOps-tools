@@ -1,8 +1,6 @@
-version: "3"
-
 services:
   gitea:
-    image: gitea/gitea:1.15.9
+    image: gitea/gitea:1.23.1
     environment:
       - USER_UID=1000
       - USER_GID=1000
@@ -13,7 +11,7 @@ services:
       - default
       - proxy_my-network
     volumes:
-      - ${PWD}/gitea:/data
+      - ./gitea:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     #ports:

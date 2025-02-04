@@ -1,4 +1,5 @@
 applications/gitea/gitea
+applications/gitea/gitea-data
 applications/api/venv
 applications/api/__pycache__
 applications/flask-python/venv
@@ -12,3 +13,7 @@ monitoring/alertmanager/config.yml
 test/
 drawio/
 docker-revision/
+monitoring/prometheus_data/
+monitoring/grafana_data/
+monitoring/prometheus_data/
+monitoring/uptime-kuma/

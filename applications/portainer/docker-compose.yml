@@ -2,7 +2,7 @@ version: "3.9"
 services:
   portainer:
     container_name: portainer
-    image: portainer/portainer-ce:2.9.3
+    image: portainer/portainer-ce:2.26.1
     restart: always
     #ports:
     # - 9000:9000

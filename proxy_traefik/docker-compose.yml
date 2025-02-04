@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   traefik:
-    image: "traefik:v2.6"
+    image: "traefik:v3.3.2"
     container_name: "traefik"
     command:
       #- "--log.level=DEBUG"
@@ -19,14 +19,14 @@ services:
       - "--certificatesResolvers.lets-encrypt.acme.httpChallenge.entryPoint=web"
       - "--providers.docker.network=soowcode"
       - "--serverstransport.insecureskipverify=true"
-    # labels:
-    #   # Dashboard
-    #   - "traefik.http.routers.traefik.rule=Host(`traefik-dashboard.soowcode.com`)"
-    #   - "traefik.http.routers.traefik.service=api@internal"
-    #   - "traefik.http.routers.traefik.tls.certresolver=lets-encrypt"
-    #   - "traefik.http.routers.traefik.entrypoints=websecure"
-    # - "traefik.http.routers.traefik.middlewares=authtraefik"
-    # - "traefik.http.middlewares.authtraefik.basicauth.users=rougeo:$$apr1$$U8fcoH9i$$y02OEkPKZdPsBpLbNzUS41" # user/passwo
+    labels:
+      # Dashboard
+      - "traefik.http.routers.traefik.rule=Host(`traefik-dashboard.soowcode.com`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.tls.certresolver=lets-encrypt"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.middlewares=authtraefik"
+      - "traefik.http.middlewares.authtraefik.basicauth.users=rougeo:$$apr1$$U8fcoH9i$$y02OEkPKZdPsBpLbNzUS41" # user/passwo
     ports:
       - "80:80"
       - "8080:8080"

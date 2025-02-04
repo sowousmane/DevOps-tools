@@ -1,10 +1,10 @@
-version: "3.9"
+
 services:
   grafana:
     image: grafana/grafana:8.3.4
     container_name: grafana
     volumes:
-      - grafana_data:/var/lib/grafana
+      - ./grafana_data:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=adminpassword
@@ -15,20 +15,20 @@ services:
     # ports:
     #   - 3000:3000
     networks:
-      - proxy_my-network
+      - nginx_network
       - default
     
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "grafana"
+    # logging:
+    #   driver: gelf
+    #   options:
+    #     gelf-address: "udp://localhost:12201"
+    #     tag: "grafana"
 
   prometheus:
-    image: prom/prometheus:v2.1.0
+    image: prom/prometheus:v3.1.0
     volumes:
       - ./prometheus/:/etc/prometheus/
-      - prometheus_data:/prometheus
+      - ./prometheus_data:/prometheus
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"
@@ -42,7 +42,7 @@ services:
     depends_on:
       - cadvisor
     networks:
-      - proxy_my-network
+      - nginx_network
       - default
     restart: always
     extra_hosts:
@@ -62,7 +62,7 @@ services:
     # ports:
     #   - 9100:9100
     networks:
-      - proxy_my-network
+      - nginx_network
       - default
     restart: always
 
@@ -73,13 +73,13 @@ services:
     volumes:
       - ./alertmanager/:/etc/alertmanager/
     networks:
-      - proxy_my-network
+      - nginx_network
       - default
     restart: always
     command:
       - "--config.file=/etc/alertmanager/config.yml"
       - "--storage.path=/alertmanager"
-
+# oui
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
     volumes:
@@ -90,16 +90,16 @@ services:
     ports:
       - 8080:8080
     networks:
-      - proxy_my-network
+      - nginx_network
       - default
     restart: always
 
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "cadvisor"
-
+    # logging:
+    #   driver: gelf
+    #   options:
+    #     gelf-address: "udp://localhost:12201"
+    #     tag: "cadvisor"
+#non pour nafa
   prometheus-blackbox:
     image: prom/blackbox-exporter
     volumes:
@@ -107,7 +107,7 @@ services:
     ports:
       - 9115:9115
     networks:
-      - proxy_my-network
+      - nginx_network
       - default
 
     restart: always
@@ -121,11 +121,11 @@ services:
       - 3001:3001
     
     networks:
-      - proxy_my-network
+      - nginx_network
       - default
 
 networks:
-  proxy_my-network:
+  nginx_network:
     external: true
 
 volumes:
